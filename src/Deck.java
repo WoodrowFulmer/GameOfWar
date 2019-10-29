@@ -16,7 +16,7 @@ public class Deck {
 	public Deck() {
 		rand = new Random(System.currentTimeMillis());
 		cards = new ArrayList<>();
-		shuffled = true;
+		shuffled = false;
 	}
 
 	public void shuffle() {
@@ -31,12 +31,16 @@ public class Deck {
 	}
 	
 	public Card draw() {
-		shuffled = false;
-		int index = rand.nextInt(cards.size());
-		return cards.remove(index);
+		if(cards.size() > 0) {
+			shuffled = false;
+			int index = rand.nextInt(cards.size());
+			return cards.remove(index);
+		}
+		System.err.println("Cannot draw a card. Deck empty.");
+		return null;
 	}
 	
-	public void deal(List<Collection> players) {
+	public void deal(List<Collection<Card>> players) {
 		this.shuffle();
 		for(int i = 0; i < NUMBER_OF_VALUES * NUMBER_OF_SUITS; i++) {
 			players.get(i % players.size()).add(this.draw());

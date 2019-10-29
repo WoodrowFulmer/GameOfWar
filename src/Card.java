@@ -1,6 +1,6 @@
 package bin;
 
-public class Card {
+public class Card implements Comparable<Card>{
 	private int value;
 	private int suit;
 	
@@ -80,5 +80,28 @@ public class Card {
 	
 	public int getSuit() {
 		return suit;
+	}
+	
+	@Override
+	public int compareTo(Card c) {
+		if(this.value == c.getValue()) {
+			return 0;
+		}
+		else if(this.value > c.getValue()) {
+			return 1;
+		}
+		else {
+			return -1;
+		}
+	}
+	
+	public boolean equals(Object o) {
+		if(o instanceof Card) {
+			Card c = (Card)o;
+			if(c.getValue() == this.value && c.getSuit() == this.suit) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
