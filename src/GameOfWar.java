@@ -106,7 +106,12 @@ public class GameOfWar {
 		}
 	}
 	
-	//Give cards from the static prizepool to the winning player (given)
+	/**
+	 * Give cards from the static prizepool to the winning player (given)
+	 *
+	 * @param player 	A list of cards in a player's hand
+	 * @return			A count of how many cards were added to the player's hand
+	 */
 	private static int awardCards(LinkedList<Card> player) {
 		int counter = 0;
 		while(prizepool.size() > 0) {
